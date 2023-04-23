@@ -1,0 +1,1 @@
+export { getBing } from "./getBing";
