@@ -23,5 +23,6 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // borderWidth: 10,
     // borderColor: "red",
+    overflow: "scroll",
   },
 });
