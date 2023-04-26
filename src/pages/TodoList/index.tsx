@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Button,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   View,
+  GestureResponderEvent,
 } from "react-native";
 
 export default function TodaList() {
@@ -21,16 +22,25 @@ export default function TodaList() {
     });
   }, [tasks]);
 
-  const inputRef = useRef<TextInput>(null);
+  const [text, setText] = useState("");
 
-  const handleAdd = (e: TextInput) => {};
+  const handleAdd = (evt: GestureResponderEvent) => {
+    setTasks((prev) => {
+      const isExist = prev.includes(text);
+      isExist ||
+        React.startTransition(() => {
+          setText("");
+        });
+      return isExist ? prev : [text, ...prev];
+    });
+  };
 
   return (
     <View style={styles.box}>
       <Text>Task Panel</Text>
       <View style={styles.header}>
-        <TextInput ref={inputRef} style={styles.input} />
-        <Button title="add task" />
+        <TextInput value={text} onChangeText={setText} style={styles.input} />
+        <Button onPress={handleAdd} title="add task" />
       </View>
       <View>
         <ScrollView>{tasksEl}</ScrollView>
