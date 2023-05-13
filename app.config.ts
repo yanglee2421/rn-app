@@ -23,9 +23,16 @@ export default function expoConfig(ctx: ConfigContext): ExpoConfig {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
+      package: "com.example.myapplication",
     },
     web: {
       favicon: "./assets/favicon.png",
     },
+    extra: {
+      eas: {
+        projectId: "153921b9-84ce-447b-a5d0-15e015b2eef3",
+      },
+    },
+    owner: "yanglee2421",
   };
 }
